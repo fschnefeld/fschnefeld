@@ -1,24 +1,24 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import requests
-import nbformat
 from nbconvert import HTMLExporter
+from IPython.display import HTML
 
 
 def display_notebook_from_github(github_repo_url):
-    # Fetch the notebook from GitHub using Streamlit secrets
-    github_token = st.secrets["githubtoken"]
-    headers = {"Authorization": f"token {github_token}"}
-    response = requests.get(github_repo_url, headers=headers)
-    notebook_content = response.text
-    
-    # Convert the notebook to HTML
-    notebook_node = nbformat.reads(notebook_content, as_version=4)
-    html_exporter = HTMLExporter()
-    (body, resources) = html_exporter.from_notebook_node(notebook_node)
-    
-    # Display the notebook HTML in Streamlit
-    st.components.v1.html(body, height=1000, scrolling=True)
+    try:
+        # Fetch the notebook from GitHub
+        response = requests.get(github_repo_url)
+        notebook_content = response.text
+        
+        # Convert the notebook to HTML using nbconvert
+        html_exporter = HTMLExporter()
+        (body, resources) = html_exporter.from_notebook_node(notebook_content)
+        
+        # Display the notebook HTML using IPython display
+        st.write(HTML(body))
+    except Exception as e:
+        st.error(f"Error fetching or displaying notebook: {e}")
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
 looker_html = f"""
