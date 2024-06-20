@@ -87,21 +87,24 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 # Sidebar buttons for navigation
 st.sidebar.header("Navigation")
-if st.sidebar.button("Home"):
-    selected_page = "Home"
-if st.sidebar.button("Dashboards"):
-    selected_page = "Dashboards"
-if st.sidebar.button("Code"):
-    selected_page = "Code"
-if st.sidebar.button("ML Models"):
-    selected_page = "ML Models"
-if st.sidebar.button("Data Pipelines"):
-    selected_page = "Data Pipelines"
-if st.sidebar.button("Articles"):
-    selected_page = "Articles"
+selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Pipelines", "Articles"], index=0)
+
+# Sidebar buttons for navigation
+#st.sidebar.header("Navigation")
+#if st.sidebar.button("Home"):
+#    selected_page = "Home"
+#if st.sidebar.button("Dashboards"):
+#    selected_page = "Dashboards"
+#if st.sidebar.button("Code"):
+#    selected_page = "Code"
+#if st.sidebar.button("ML Models"):
+#    selected_page = "ML Models"
+#if st.sidebar.button("Data Pipelines"):
+#    selected_page = "Data Pipelines"
+#if st.sidebar.button("Articles"):
+#    selected_page = "Articles"
 
 # Main content based on sidebar selection
 if selected_page == "Home":
