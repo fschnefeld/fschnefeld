@@ -219,6 +219,7 @@ data.head()'''
     st.code(code_2, language="python")
 
 if selected_page == "ML Models":
+    import requests
     st.header("ML Models")
 
     # Specify the GitHub repository URL
