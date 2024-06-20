@@ -135,5 +135,5 @@ st.markdown("""
 Here is a Figma file that encapsulates the visual aspects of our data journey.
 """)
 # Replace with your Figma embed URL
-figma_url = "https://www.figma.com/design/j9vzQAVF8kRz8fNzRqhdOs/Untitled?node-id=1-1010&t=daH5wGTBiZgx0iwU-1"
+figma_url = "<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2Fj9vzQAVF8kRz8fNzRqhdOs%2FUntitled%3Fnode-id%3D1-1010%26t%3DdaH5wGTBiZgx0iwU-1" allowfullscreen></iframe>"
 st.markdown(f'<iframe src="{figma_url}" width="100%" height="600" frameborder="0"></iframe>', unsafe_allow_html=True)
