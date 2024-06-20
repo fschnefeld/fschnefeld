@@ -4,6 +4,21 @@ import requests
 import nbformat
 from nbconvert import HTMLExporter
 
+
+def display_notebook_from_github(github_repo_url):
+    # Fetch the notebook from GitHub using Streamlit secrets
+    github_token = st.secrets["github_token"]
+    headers = {"Authorization": f"token {github_token}"}
+    response = requests.get(github_repo_url, headers=headers)
+    notebook_content = response.text
+    
+    # Convert the notebook to HTML
+    notebook_node = nbformat.reads(notebook_content, as_version=4)
+    html_exporter = HTMLExporter()
+    (body, resources) = html_exporter.from_notebook_node(notebook_node)
+    
+    # Display the notebook HTML in Streamlit
+    st.components.v1.html(body, height=1000, scrolling=True)
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
 looker_html = f"""
@@ -223,21 +238,8 @@ data.head()'''
 
 if selected_page == "ML Models":
     st.header("ML Models")
-
-    # Specify the GitHub repository URL
-    github_repo_url = "https://github.com/fschnefeld/fschnefeld/blob/main/DDcaseplusOptions.ipynb"
-
-    # Fetch the notebook from GitHub
-    response = requests.get(github_repo_url)
-    notebook_content = response.text
-
-    # Convert the notebook to HTML
-    notebook_node = nbformat.reads(notebook_content, as_version=4)
-    html_exporter = HTMLExporter()
-    (body, resources) = html_exporter.from_notebook_node(notebook_node)
-
-    # Display the notebook HTML in Streamlit
-    components.html(body, height=1000, scrolling=True)
+    github_repo_url = "https://raw.githubusercontent.com/your-username/your-repository/main/DDcaseplusOptions.ipynb"
+    display_notebook_from_github(github_repo_url)
 
     st.markdown(ml_model_html, unsafe_allow_html=True)
 
