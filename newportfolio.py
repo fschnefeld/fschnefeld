@@ -238,7 +238,7 @@ data.head()'''
 
 if selected_page == "ML Models":
     st.header("ML Models")
-    github_repo_url = "https://raw.githubusercontent.com/your-username/your-repository/main/DDcaseplusOptions.ipynb"
+    github_repo_url = "https://github.com/fschnefeld/fschnefeld/blob/main/DDcaseplusOptions.ipynb"
     display_notebook_from_github(github_repo_url)
 
     st.markdown(ml_model_html, unsafe_allow_html=True)
