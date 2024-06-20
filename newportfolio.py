@@ -7,13 +7,16 @@ from IPython.display import HTML
 
 def display_notebook_from_github(github_repo_url):
     try:
-        # Fetch the notebook from GitHub
+         # Fetch the notebook from GitHub
         response = requests.get(github_repo_url)
         notebook_content = response.text
         
+        # Parse the notebook using nbformat
+        notebook_node = nbformat.reads(notebook_content, as_version=4)
+        
         # Convert the notebook to HTML using nbconvert
         html_exporter = HTMLExporter()
-        (body, resources) = html_exporter.from_notebook_node(notebook_content)
+        (body, resources) = html_exporter.from_notebook_node(notebook_node)
         
         # Display the notebook HTML using IPython display
         st.write(HTML(body))
