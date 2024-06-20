@@ -2,3 +2,4 @@ streamlit
 requests
 nbformat
 nbconvert
+iPython
