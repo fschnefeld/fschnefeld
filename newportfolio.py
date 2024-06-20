@@ -216,7 +216,7 @@ data.head()'''
 
 if selected_page == "ML Models":
     st.header("ML Models")
-    st.markdown(ml_model_html, allow_unsafe_html=True)
+    st.markdown(ml_model_html, unsafe_allow_html=True)
     st.markdown("""
     ### Objective
     Describe machine learning models used in the project.
