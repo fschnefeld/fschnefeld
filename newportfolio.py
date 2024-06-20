@@ -12,7 +12,16 @@ looker_html = f"""
 <iframe id="looker-embed" src="{looker_url}" frameborder="0" allowfullscreen></iframe>
 """
 ml_model = "https://app.hex.tech/9b615ac9-56f9-406c-a30e-28703fdc2191/app/594909d0-f6f8-4efb-9698-dfaa4fd8fd05/latest?embedded=true"
-slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"
+ml_model_html = f"""
+<style>
+    #ml_model_embed {{
+        width: 100%;
+        height: 1500px;
+        }}
+</style>
+<iframe id="ml_model_embed" src="{ml_model}" 
+"""
+slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 slides_html = f"""
 <style>
     #slides-embed {{
