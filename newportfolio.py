@@ -7,7 +7,7 @@ from nbconvert import HTMLExporter
 
 def display_notebook_from_github(github_repo_url):
     # Fetch the notebook from GitHub using Streamlit secrets
-    github_token = "st.secrets["githubtoken"]"
+    github_token = st.secrets["githubtoken"]
     headers = {"Authorization": f"token {github_token}"}
     response = requests.get(github_repo_url, headers=headers)
     notebook_content = response.text
