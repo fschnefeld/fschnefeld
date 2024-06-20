@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
@@ -218,6 +219,12 @@ data.head()'''
     st.code(code_2, language="python")
 
 if selected_page == "ML Models":
+    # Convert the Jupyter notebook to HTML if not already converted
+    import subprocess
+    import os
+
+    notebook_file = "DDcaseplusOptions.ipynb"
+    html_file = "DDcaseplusOptions.html"
     st.header("ML Models")
     st.markdown(ml_model_html, unsafe_allow_html=True)
     st.markdown("""
@@ -232,3 +239,25 @@ if selected_page == "ML Models":
     **Story**: "By implementing machine learning models, we were able to predict customer churn and identify high-value customers. These models helped us tailor our marketing strategies and improve customer
 """)
 
+    if not os.path.exists(html_file):
+        subprocess.run(["jupyter", "nbconvert", "--to", "html", notebook_file])
+
+    # Read the HTML file and display it in Streamlit
+    with open(html_file, "r", encoding="utf-8") as f:
+        notebook_html = f.read()
+
+    components.html(notebook_html, height=1000, scrolling=True)
+
+if selected_page == "Data Pipelines":
+    st.header("Data Pipelines")
+    st.markdown(looker_html, unsafe_allow_html=True)
+
+if selected_page == "Articles":
+    st.header("Articles")
+    st.markdown("""
+    ### DataCorp's Transformation Journey
+    - [Data Collection Strategies](#)
+    - [Analyzing Customer Data](#)
+    - [Implementing Data-Driven Changes](#)
+    - [Measuring Business Impact](#)
+    """)
