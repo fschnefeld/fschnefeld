@@ -63,7 +63,7 @@ st.markdown("""
 Here is an interactive Tableau dashboard that illustrates the insights derived from our data analysis.
 """)
 # Replace with your Tableau dashboard URL
-tableau_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/vhQBD"
+tableau_url = "https://public.tableau.com/views/BirdCase/Dashboard5?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link"
 st.markdown(f'<iframe src="{tableau_url}" width="100%" height="900"></iframe>', unsafe_allow_html=True)
 
 # Strategic Influence section
