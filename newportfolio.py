@@ -1,5 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import requests
+import nbformat
+from nbconvert import HTMLExporter
 
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
@@ -219,7 +222,6 @@ data.head()'''
     st.code(code_2, language="python")
 
 if selected_page == "ML Models":
-    import requests
     st.header("ML Models")
 
     # Specify the GitHub repository URL
