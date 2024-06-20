@@ -11,7 +11,7 @@ looker_html = f"""
 </style>
 <iframe id="looker-embed" src="{looker_url}" frameborder="0" allowfullscreen></iframe>
 """
-
+ml_model = "https://app.hex.tech/9b615ac9-56f9-406c-a30e-28703fdc2191/app/594909d0-f6f8-4efb-9698-dfaa4fd8fd05/latest?embedded=true"
 slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"
 slides_html = f"""
 <style>
@@ -217,4 +217,6 @@ if selected_page == "ML Models":
     - **Model performance and evaluation**.
 
     **Story**: "By implementing machine learning models, we were able to predict customer churn and identify high-value customers. These models helped us tailor our marketing strategies and improve customer
-""")
+"""
+    st.markdown(ml_model, allow_unsafe_html=True)
+)
