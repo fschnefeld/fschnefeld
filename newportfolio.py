@@ -105,6 +105,8 @@ if selected_page == "Home":
     st.markdown("""
     DataCorp has been experiencing a decline in customer retention and stagnant sales growth. To turn the tide, we embarked on a data-driven transformation journey.
     """)
+    st.markdown(slides_html, unsafe_allow_html=True
+    )
     st.header("Data Collection and Storage")
     st.markdown("""
     ### Objective
