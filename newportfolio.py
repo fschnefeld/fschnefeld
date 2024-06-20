@@ -219,34 +219,24 @@ data.head()'''
     st.code(code_2, language="python")
 
 if selected_page == "ML Models":
-    # Convert the Jupyter notebook to HTML if not already converted
-    import subprocess
-    import os
-
-    notebook_file = "DDcaseplusOptions.ipynb"
-    html_file = "DDcaseplusOptions.html"
     st.header("ML Models")
+
+    # Specify the GitHub repository URL
+    github_repo_url = "https://github.com/fschnefeld/fschnefeld/blob/main/DDcaseplusOptions.ipynb"
+
+    # Fetch the notebook from GitHub
+    response = requests.get(github_repo_url)
+    notebook_content = response.text
+
+    # Convert the notebook to HTML
+    notebook_node = nbformat.reads(notebook_content, as_version=4)
+    html_exporter = HTMLExporter()
+    (body, resources) = html_exporter.from_notebook_node(notebook_node)
+
+    # Display the notebook HTML in Streamlit
+    components.html(body, height=1000, scrolling=True)
+
     st.markdown(ml_model_html, unsafe_allow_html=True)
-    st.markdown("""
-    ### Objective
-    Describe machine learning models used in the project.
-
-    ### Content
-    - **Models used**: Classification, regression, clustering.
-    - **Tools and libraries**: scikit-learn, TensorFlow, Keras.
-    - **Model performance and evaluation**.
-
-    **Story**: "By implementing machine learning models, we were able to predict customer churn and identify high-value customers. These models helped us tailor our marketing strategies and improve customer
-""")
-
-    if not os.path.exists(html_file):
-        subprocess.run(["jupyter", "nbconvert", "--to", "html", notebook_file])
-
-    # Read the HTML file and display it in Streamlit
-    with open(html_file, "r", encoding="utf-8") as f:
-        notebook_html = f.read()
-
-    components.html(notebook_html, height=1000, scrolling=True)
 
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
