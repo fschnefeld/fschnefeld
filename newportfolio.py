@@ -113,7 +113,7 @@ st.markdown("""
 Here is a Google Slides presentation that demonstrates the business impact of our data-driven strategies.
 """)
 # Replace with your Google Slides presentation URL
-slides_url = "https://docs.google.com/presentation/d/e/YourPresentationID/embed?start=false&loop=false&delayms=3000"
+slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"
 st.markdown(f'<iframe src="{slides_url}" width="100%" height="500" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>', unsafe_allow_html=True)
 
 # Conclusion section
