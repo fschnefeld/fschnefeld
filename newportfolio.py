@@ -151,7 +151,7 @@ if selected_page == "Dashboards":
     st.markdown("""
     Here is an interactive Tableau dashboard that illustrates the insights derived from our data analysis.
     """)
-    st.markdown(tableau_html, unsafe_allow_html=True)
+    st.markdown(figma_html_html, unsafe_allow_html=True)
 
 if selected_page == "Code":
     st.header("Code")
