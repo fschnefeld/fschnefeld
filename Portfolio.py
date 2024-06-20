@@ -1,5 +1,5 @@
 import streamlit as st
-from IPython.display import HTML
+#from IPython.display import HTML
         # define the URL of the Looker report
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
 code = '''import streamlit as st
