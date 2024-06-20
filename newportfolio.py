@@ -63,7 +63,7 @@ st.markdown("""
 Here is an interactive Tableau dashboard that illustrates the insights derived from our data analysis.
 """)
 # Replace with your Tableau dashboard URL
-tableau_url = "https://public.tableau.com/views/YourDashboard/YourView"
+tableau_url = "https://public.tableau.com/views/Template_17010282050560/Dashboard5?:language=en-US&:sid=&:display_count=n&:origin=viz_share_link"
 st.markdown(f'<iframe src="{tableau_url}" width="100%" height="600"></iframe>', unsafe_allow_html=True)
 
 # Strategic Influence section
