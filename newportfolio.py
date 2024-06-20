@@ -1,5 +1,25 @@
 import streamlit as st
+st.set_page_config(
+                page_title="Frederik's Portfolio",
+                page_icon=":man_technologist:",
+                layout="wide",
+                initial_sidebar_state="expanded")
 
+with st.container():
+    st.subheader("My portfolio page")
+
+with st.container():
+    st.write("---")
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.header("What do I do?")
+
+# Define the sidebar menu items
+menu_items = ["Home", "Socials", "Code", "Projects", "Dashboard"]
+
+# Create the sidebar with the menu items
+st.sidebar.header("Some sort of menu")
+selected_item = st.sidebar.selectbox("", menu_items)
 # Title of the application
 st.title("Data Journey Portfolio")
 
