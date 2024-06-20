@@ -227,5 +227,5 @@ if selected_page == "ML Models":
 
     **Story**: "By implementing machine learning models, we were able to predict customer churn and identify high-value customers. These models helped us tailor our marketing strategies and improve customer
 """)
-    st.markdown(ml_model, allow_unsafe_html=True)
+    st.markdown(ml_model_html, allow_unsafe_html=True)
 
