@@ -64,7 +64,7 @@ Here is an interactive Tableau dashboard that illustrates the insights derived f
 """)
 # Replace with your Tableau dashboard URL
 tableau_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/vhQBD"
-st.markdown(f'<iframe src="{tableau_url}" width="100%" height="600"></iframe>', unsafe_allow_html=True)
+st.markdown(f'<iframe src="{tableau_url}" width="100%" height="900"></iframe>', unsafe_allow_html=True)
 
 # Strategic Influence section
 st.header("Strategic Influence")
@@ -114,7 +114,7 @@ Here is a Google Slides presentation that demonstrates the business impact of ou
 """)
 # Replace with your Google Slides presentation URL
 slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"
-st.markdown(f'<iframe src="{slides_url}" width="100%" height="500" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>', unsafe_allow_html=True)
+st.markdown(f'<iframe src="{slides_url}" width="100%" height="900" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>', unsafe_allow_html=True)
 
 # Conclusion section
 st.header("Conclusion")
@@ -136,4 +136,4 @@ Here is a Figma file that encapsulates the visual aspects of our data journey.
 """)
 # Replace with your Figma embed URL
 figma_url = "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2Fj9vzQAVF8kRz8fNzRqhdOs%2FUntitled%3Fnode-id%3D1-1010%26t%3DdaH5wGTBiZgx0iwU-1"
-st.markdown(f'<iframe src="{figma_url}" width="100%" height="600" frameborder="0"></iframe>', unsafe_allow_html=True)
+st.markdown(f'<iframe src="{figma_url}" width="100%" height="900" frameborder="0"></iframe>', unsafe_allow_html=True)
