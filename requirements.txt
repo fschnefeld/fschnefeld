@@ -3,3 +3,4 @@ requests
 nbformat
 nbconvert
 iPython
+gspread
