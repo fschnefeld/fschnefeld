@@ -170,19 +170,28 @@ if selected_page == "Home":
     **Story**: "Through rigorous data analysis, patterns emerged. We discovered that loyal customers were leaving due to unaddressed concerns, and marketing campaigns were not reaching the right audience. These insights were crucial for reshaping our strategy."
     """)
 
-elif selected_page == "Dashboards":
+if selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
     st.markdown("""
     Here is an interactive Tableau dashboard that illustrates the insights derived from our data analysis.
     """)
     st.markdown(figma_html, unsafe_allow_html=True)
 
-elif selected_page == "Code":
+if selected_page == "Code":
     st.header("Code")
-    st.markdown("""
-        ## Embedded Google Sheet
-        <iframe src="https://docs.google.com/spreadsheets/d/1IIiPYvZpyd1Zup6F2BR_IsT19gSDP_MtfO_Th_GSgKE/edit?usp=sharing" width="100%" height="600"></iframe>
-    """, unsafe_allow_html=True)
+    code_1 = '''import streamlit as st
+from IPython.display import HTML
+# define the URL of the Looker report
+looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
+looker_html = f"""
+<style>
+    #looker-embed {{
+        width: 100vh;
+        height: 100vh;
+    }}
+</style>
+<iframe id="looker-embed" src="{looker_url}" frameborder="0" allowfullscreen></iframe>
+"""
 
 # display the report in Streamlit using the HTML code
 st.set_page_config(
