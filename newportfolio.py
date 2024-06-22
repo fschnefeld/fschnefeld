@@ -45,6 +45,16 @@ ml_model_html = f"""
 </a>
 <div>
 """
+sheets_url = "https://docs.google.com/spreadsheets/d/1IIiPYvZpyd1Zup6F2BR_IsT19gSDP_MtfO_Th_GSgKE/edit?gid=0#gid=0"
+sheets_html = f"""
+<style> 
+    #sheets-embed {{
+        width: 100%;
+        height: 750px;
+    }}
+</style>
+<iframe id="sheets-embed" src="{sheets_url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+"""
 slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"
 slides_html = f"""
 <style>
@@ -169,6 +179,8 @@ if selected_page == "Home":
 
     **Story**: "Through rigorous data analysis, patterns emerged. We discovered that loyal customers were leaving due to unaddressed concerns, and marketing campaigns were not reaching the right audience. These insights were crucial for reshaping our strategy."
     """)
+    st.markdown(sheets_html, unsafe_allow_html=True
+    )
 
 if selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
