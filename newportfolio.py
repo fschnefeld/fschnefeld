@@ -170,7 +170,7 @@ if selected_page == "Home":
     **Story**: "Through rigorous data analysis, patterns emerged. We discovered that loyal customers were leaving due to unaddressed concerns, and marketing campaigns were not reaching the right audience. These insights were crucial for reshaping our strategy."
     """)
 
-if selected_page == "Dashboards":
+elif selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
     st.markdown("""
     Here is an interactive Tableau dashboard that illustrates the insights derived from our data analysis.
