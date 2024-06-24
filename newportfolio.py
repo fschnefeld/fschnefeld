@@ -295,4 +295,5 @@ if selected_page == "API":
             else:
                 st.warning("No data found for the specified player.")
         else:
-            st.warning("Please enter a player name."
+            st.warning("Please enter a player name.")
+            
