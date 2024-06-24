@@ -26,6 +26,33 @@ def display_notebook_from_github(github_repo_url):
         st.write(HTML(body))
     except Exception as e:
         st.error(f"Error fetching or displaying notebook: {e}")
+API_BASE_URL = "https://transfermarkt-api.fly.dev"
+
+def fetch_player_id(player_name):
+    url = f"{API_BASE_URL}/players"
+    params = {"name": player_name}
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        if data:
+            return data[0]['player_id']  # Assuming the first match is the desired player
+        else:
+            st.error("Player not found.")
+            return None
+    else:
+        st.error(f"Error fetching player ID: {response.status_code}")
+        return None
+
+def fetch_player_valuation(player_id):
+    url = f"{API_BASE_URL}/players/{player_id}/market_value"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        st.error(f"Error fetching player valuation: {response.status_code}")
+        return None
+
+
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
 looker_html = f"""
@@ -192,6 +219,35 @@ if selected_page == "Dashboards":
     st.markdown(figma_html, unsafe_allow_html=True)
 
 if selected_page == "Code":
+        # Form to search for a player
+    with st.form(key='search_form'):
+        player_name = st.text_input("Enter Player Name")
+        submit_button = st.form_submit_button(label='Search')
+
+    if submit_button:
+        if player_name:
+            player_id = fetch_player_id(player_name)
+            if player_id:
+                valuation_data = fetch_player_valuation(player_id)
+                if valuation_data:
+                    df = pd.DataFrame(valuation_data['market_values'])
+                    df['date'] = pd.to_datetime(df['date'])
+                    df = df.sort_values(by='date')
+
+                    st.subheader(f"Market Value Progress for {player_name}")
+                    st.write(df)
+
+                    plt.figure(figsize=(10, 5))
+                    plt.plot(df['date'], df['value'], marker='o')
+                    plt.title(f"Market Value Progress for {player_name}")
+                    plt.xlabel('Date')
+                    plt.ylabel('Market Value (€)')
+                    plt.grid(True)
+                    st.pyplot(plt)
+        else:
+            st.warning("Please enter a player name.")
+    
+    
     st.header("Code")
     code_1 = '''import streamlit as st
 from IPython.display import HTML
