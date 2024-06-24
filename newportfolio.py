@@ -1,17 +1,15 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import requests
-#import gspread
+import pandas as pd
+import matplotlib.pyplot as plt
 import nbformat
 from nbconvert import HTMLExporter
 from IPython.display import HTML
-import pandas as pd
-import matplotlib.pyplot as plt
 
-
+# Function to display notebook from GitHub
 def display_notebook_from_github(github_repo_url):
     try:
-         # Fetch the notebook from GitHub
+        # Fetch the notebook from GitHub
         response = requests.get(github_repo_url)
         notebook_content = response.text
         
@@ -26,32 +24,6 @@ def display_notebook_from_github(github_repo_url):
         st.write(HTML(body))
     except Exception as e:
         st.error(f"Error fetching or displaying notebook: {e}")
-API_BASE_URL = "https://transfermarkt-api.fly.dev"
-
-def fetch_player_id(player_name):
-    url = f"{API_BASE_URL}/players"
-    params = {"name": player_name}
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        if data:
-            return data[0]['player_id']  # Assuming the first match is the desired player
-        else:
-            st.error("Player not found.")
-            return None
-    else:
-        st.error(f"Error fetching player ID: {response.status_code}")
-        return None
-
-def fetch_player_valuation(player_id):
-    url = f"{API_BASE_URL}/players/{player_id}/market_value"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        st.error(f"Error fetching player valuation: {response.status_code}")
-        return None
-
 
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
@@ -150,24 +122,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-# Sidebar buttons for navigation
-st.sidebar.header("Navigation")
-selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Pipelines", "Articles"], index=0)
 
 # Sidebar buttons for navigation
-#st.sidebar.header("Navigation")
-#if st.sidebar.button("Home"):
-#    selected_page = "Home"
-#if st.sidebar.button("Dashboards"):
-#    selected_page = "Dashboards"
-#if st.sidebar.button("Code"):
-#    selected_page = "Code"
-#if st.sidebar.button("ML Models"):
-#    selected_page = "ML Models"
-#if st.sidebar.button("Data Pipelines"):
-#    selected_page = "Data Pipelines"
-#if st.sidebar.button("Articles"):
-#    selected_page = "Articles"
+st.sidebar.header("Navigation")
+selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Pipelines", "Articles", "API"], index=0)
 
 # Main content based on sidebar selection
 if selected_page == "Home":
@@ -180,8 +138,7 @@ if selected_page == "Home":
     st.markdown("""
     DataCorp has been experiencing a decline in customer retention and stagnant sales growth. To turn the tide, we embarked on a data-driven transformation journey.
     """)
-    st.markdown(slides_html, unsafe_allow_html=True
-    )
+    st.markdown(slides_html, unsafe_allow_html=True)
     st.header("Data Collection and Storage")
     st.markdown("""
     ### Objective
@@ -208,8 +165,7 @@ if selected_page == "Home":
 
     **Story**: "Through rigorous data analysis, patterns emerged. We discovered that loyal customers were leaving due to unaddressed concerns, and marketing campaigns were not reaching the right audience. These insights were crucial for reshaping our strategy."
     """)
-    st.markdown(sheets_html, unsafe_allow_html=True
-    )
+    st.markdown(sheets_html, unsafe_allow_html=True)
 
 if selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
@@ -219,115 +175,115 @@ if selected_page == "Dashboards":
     st.markdown(figma_html, unsafe_allow_html=True)
 
 if selected_page == "Code":
-        # Form to search for a player
-    with st.form(key='search_form'):
-        player_name = st.text_input("Enter Player Name")
-        submit_button = st.form_submit_button(label='Search')
-
-    if submit_button:
-        if player_name:
-            player_id = fetch_player_id(player_name)
-            if player_id:
-                valuation_data = fetch_player_valuation(player_id)
-                if valuation_data:
-                    df = pd.DataFrame(valuation_data['market_values'])
-                    df['date'] = pd.to_datetime(df['date'])
-                    df = df.sort_values(by='date')
-
-                    st.subheader(f"Market Value Progress for {player_name}")
-                    st.write(df)
-
-                    plt.figure(figsize=(10, 5))
-                    plt.plot(df['date'], df['value'], marker='o')
-                    plt.title(f"Market Value Progress for {player_name}")
-                    plt.xlabel('Date')
-                    plt.ylabel('Market Value (€)')
-                    plt.grid(True)
-                    st.pyplot(plt)
-        else:
-            st.warning("Please enter a player name.")
-    
-    
     st.header("Code")
+    st.markdown("This is the code section where you can find various code snippets and examples.")
+    
     code_1 = '''import streamlit as st
 from IPython.display import HTML
-# define the URL of the Looker report
-looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
-looker_html = f"""
+# define the URL of the Google Slides presentation
+slides_url = "https://docs.google.com/presentation/d/1eUg7mOz2F3LxU7qaoh2DIn17yErVy3aFID6xYaGVV34/edit?usp=sharing"
+# create the HTML code to embed the Google Slides presentation
+slides_html = f"""
 <style>
-    #looker-embed {{
-        width: 100vh;
-        height: 100vh;
+    #slides-embed {{
+        width: 100%;
+        height: 500px;
     }}
 </style>
-<iframe id="looker-embed" src="{looker_url}" frameborder="0" allowfullscreen></iframe>
+<iframe id="slides-embed" src="{slides_url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 """
+st.markdown(slides_html, unsafe_allow_html=True)'''
 
-# display the report in Streamlit using the HTML code
-st.set_page_config(
-                page_title="Frederik's Portfolio",
-                page_icon=":man_technologist:",
-                layout="wide",
-                initial_sidebar_state="expanded")
-
-with st.container():
-    st.subheader("My portfolio page")
-
-with st.container():
-    st.write("---")
-    left_column, right_column = st.columns(2)
-    with left_column:
-        st.header("What do I do?")
-
-# Define the sidebar menu items
-menu_items = ["Home", "Socials", "Code", "Projects", "Dashboard"]
-
-# Create the sidebar with the menu items
-st.sidebar.header("Some sort of menu")
-selected_item = st.sidebar.selectbox("", menu_items)
-
-    # Define the URL for the LinkedIn profile
-linkedin_url = "https://www.linkedin.com/in/your-linkedin-profile/"
-# Show the selected page content
-if selected_item == "Home":
-    st.write("Welcome to the home page!")
-if selected_item == "Projects":
-    wtih st.container():
-        st.write("These are some of my projects")
-        st.code("")
-if selected_item == "Dashboard":
-    with st.container():
-        st.markdown(looker_html, unsafe_allow_html=True)
-
-
-else:
-# Add a button that links to the LinkedIn profile
-    st.button("To my LinkedIn")
-
-#To run, remember to type "streamlit run Portfolio.py" in the terminal'''
-
-    st.code(code_1, language="python")
-    code_2 = '''data = pd.read_csv("python_course/fb_data - dataset_Facebook.csv")
-data.head()'''
-    st.code(code_2, language="python")
+    st.code(code_1, language='python')
 
 if selected_page == "ML Models":
-    st.header("ML Models")
-    github_repo_url = "https://github.com/fschnefeld/fschnefeld/blob/main/DDcaseplusOptions.ipynb"
-    display_notebook_from_github(github_repo_url)
-
+    st.header("Machine Learning Models")
     st.markdown(ml_model_html, unsafe_allow_html=True)
-
+    
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
-    st.markdown(looker_html, unsafe_allow_html=True)
+    st.markdown("""
+    ### Overview
+    Our data pipelines are designed to efficiently collect, process, and transform data into valuable insights.
+    """)
+    st.markdown("""
+    ![Data Pipeline Flowchart](https://example.com/data-pipeline-flowchart.png)
+    """)
+    
+    st.markdown("""
+    ### Key Components
+    - **Data Ingestion**: Extracting data from various sources.
+    - **Data Processing**: Cleaning and transforming data.
+    - **Data Storage**: Storing processed data in databases.
+    - **Data Analysis**: Analyzing data to derive insights.
+    """)
+    st.markdown(sheets_html, unsafe_allow_html=True)
 
 if selected_page == "Articles":
     st.header("Articles")
+    st.markdown("Explore various articles and blogs related to our data journey.")
+    
+    articles = [
+        {
+            "title": "The Power of Data Analytics in Retail",
+            "author": "Jane Doe",
+            "url": "https://example.com/power-of-data-analytics"
+        },
+        {
+            "title": "Building Effective Data Pipelines",
+            "author": "John Smith",
+            "url": "https://example.com/data-pipelines"
+        }
+    ]
+    
+    for article in articles:
+        st.markdown(f"### {article['title']}")
+        st.markdown(f"**Author:** {article['author']}")
+        st.markdown(f"[Read more]({article['url']})")
+    
     st.markdown("""
-    ### DataCorp's Transformation Journey
-    - [Data Collection Strategies](#)
-    - [Analyzing Customer Data](#)
-    - [Implementing Data-Driven Changes](#)
-    - [Measuring Business Impact](#)
+    ### Latest Blog Post
+    Our latest blog post discusses the impact of machine learning on customer retention strategies.
     """)
+    
+    st.markdown("""
+    ![ML Blog Post](https://example.com/ml-blog-post.png)
+    """)
+    
+    st.markdown("""
+    ### Key Takeaways
+    - Machine learning models can predict customer churn.
+    - Personalized marketing campaigns increase customer retention.
+    """)
+    st.markdown(sheets_html, unsafe_allow_html=True)
+
+if selected_page == "API":
+    st.header("API")
+    st.markdown("""
+    ## Welcome to the API Page
+    This page allows you to search for player valuations using the API.
+    """)
+    
+    # Player valuation search functionality
+    def search_player_valuation(player_name):
+        api_url = "https://api.example.com/player_valuation"
+        params = {"name": player_name}
+        response = requests.get(api_url, params=params)
+        
+        if response.status_code == 200:
+            data = response.json()
+            return data
+        else:
+            st.error("Error fetching player valuation data.")
+            return None
+    
+    player_name = st.text_input("Enter player name:")
+    if st.button("Search"):
+        if player_name:
+            player_data = search_player_valuation(player_name)
+            if player_data:
+                st.write(player_data)
+        else:
+            st.warning("Please enter a player name.")
+    
+    st.markdown(looker_html, unsafe_allow_html=True)
