@@ -24,7 +24,28 @@ def display_notebook_from_github(github_repo_url):
         st.write(HTML(body))
     except Exception as e:
         st.error(f"Error fetching or displaying notebook: {e}")
-
+def search_player_valuation(player_name):
+    api_url = "https://api.example.com/player_valuation"  # Replace with your actual API URL
+    params = {"name": player_name}
+    
+    try:
+        response = requests.get(api_url, params=params)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        
+        # Assuming API returns JSON data like {"name": "Player Name", "position": "Position", "value": 1000000}
+        data = response.json()
+        
+        # Constructing DataFrame from API response
+        if isinstance(data, list):
+            df = pd.DataFrame(data)
+        else:
+            df = pd.DataFrame([data])
+        
+        return df
+    
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching player valuation data: {e}")
+   
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
 looker_html = f"""
@@ -264,26 +285,14 @@ if selected_page == "API":
     This page allows you to search for player valuations using the API.
     """)
     
-    # Player valuation search functionality
-    def search_player_valuation(player_name):
-        api_url = "https://api.example.com/player_valuation"
-        params = {"name": player_name}
-        response = requests.get(api_url, params=params)
-        
-        if response.status_code == 200:
-            data = response.json()
-            return data
-        else:
-            st.error("Error fetching player valuation data.")
-            return None
-    
     player_name = st.text_input("Enter player name:")
+    
     if st.button("Search"):
         if player_name:
             player_data = search_player_valuation(player_name)
-            if player_data:
-                st.write(player_data)
+            if player_data is not None and not player_data.empty:
+                st.dataframe(player_data)
+            else:
+                st.warning("No data found for the specified player.")
         else:
-            st.warning("Please enter a player name.")
-    
-    st.markdown(looker_html, unsafe_allow_html=True)
+            st.warning("Please enter a player name."
