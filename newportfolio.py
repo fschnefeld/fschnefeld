@@ -197,7 +197,9 @@ if selected_page == "Home":
 
         ### Scope
         **The scope of the project included converting existing UI data models into SQL models compatible with Y42 v3**
+
         **Total amount of models rebuilt: 80**
+        
         **Amount of SQL: 4-5,000 lines**
 
         ### Key takeaways: 
