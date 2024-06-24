@@ -5,6 +5,8 @@ import requests
 import nbformat
 from nbconvert import HTMLExporter
 from IPython.display import HTML
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 def display_notebook_from_github(github_repo_url):
