@@ -187,14 +187,15 @@ if selected_page == "Home":
     **Story**: "Through rigorous data analysis, patterns emerged. We discovered that loyal customers were leaving due to unaddressed concerns, and marketing campaigns were not reaching the right audience. These insights were crucial for reshaping our strategy."
     """)
     st.markdown(sheets_html, unsafe_allow_html=True)
+    st.header("Data Warehouse migration")
     st.markdown(
-        """###Overview
-        ##Tools used: Y42, dbt
+        """
+        ## Tools used: Y42, dbt
 
-        ###Project description: 
+        ### Project description: 
         **The project involved migrating a data warehouse from Y42 v1 to v3.**
 
-        ###Scope
+        ### Scope
         **The scope of the project included converting existing UI data models into SQL models compatible with Y42 v3**
         **Total amount of models rebuilt: 80**
         """
