@@ -213,7 +213,55 @@ slides_html = f"""
 </style>
 <iframe id="slides-embed" src="{slides_url}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 """
-st.markdown(slides_html, unsafe_allow_html=True)'''
+st.markdown(slides_html, unsafe_allow_html=True)
+# Import necessary libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+# Load data from a local CSV file
+data = pd.read_csv('/content/drive/MyDrive/Colab_Notebooks/trainingdata.csv')
+
+# Assuming the target column is named 'conversion' and has values 0 or 1
+# 0: Convert in next session, 1: Convert in this session
+X = data.drop(["conversion"], axis=1)
+y = data['conversion']
+
+# Define categorical and numerical columns
+categorical_cols = ['event', 'region', 'channel', 'device', 'source']
+numerical_cols = [col for col in data.columns if data[col].dtype in ['int64', 'float64']]
+
+# Create a preprocessor
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numerical_cols),
+        ('cat', OneHotEncoder(drop='first'), categorical_cols)
+    ])
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and evaluate the pipeline
+pipeline = Pipeline(steps=[('preprocessor', preprocessor),
+                           ('model', LogisticRegression(multi_class='ovr', random_state=42))])
+
+pipeline.fit(X_train, y_train)
+y_pred = pipeline.predict(X_test)
+
+next_session_conversions = (y_pred == 2)
+
+# Indices of users predicted to convert in the next session
+indices_next_session = [index for index, value in enumerate(next_session_conversions) if value]
+
+# Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+print("Classification Report:")
+print(classification_report(y_test, y_pred))'''
 
     st.code(code_1, language='python')
 
