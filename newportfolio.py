@@ -61,7 +61,7 @@ ml_model = "https://app.hex.tech/9b615ac9-56f9-406c-a30e-28703fdc2191/app/594909
 ml_model_html = f"""
 <link rel="stylesheet" href="https://static.hex.site/embed/embedStyles.css">
 <div class="hex-embed">
-<iframe width="800" height="600" frameborder="0" src="{ml_model}" ></iframe>
+<iframe width="100%" height="600" frameborder="0" src="{ml_model}" ></iframe>
 <a href="https://hex.tech/?embed" target="_blank">
   <img src="https://static.hex.site/embed/hex-logo-embed.png" alt="Hex - a modern data workspace for collaborative notebooks, data apps, dashboards, and reports." />
 </a>
@@ -296,4 +296,3 @@ if selected_page == "API":
                 st.warning("No data found for the specified player.")
         else:
             st.warning("Please enter a player name.")
-            
