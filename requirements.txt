@@ -4,3 +4,5 @@ nbformat
 nbconvert
 iPython
 gspread
+pandas
+matplotlib.pyplot
