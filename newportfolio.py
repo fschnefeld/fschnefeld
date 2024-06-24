@@ -198,6 +198,14 @@ if selected_page == "Home":
         ### Scope
         **The scope of the project included converting existing UI data models into SQL models compatible with Y42 v3**
         **Total amount of models rebuilt: 80**
+
+        ### Key takeaways: 
+
+        - **Creating and querying from staging models instead of directly from BigQuery sources**
+        - **Adapting UI models to performant SQL logic, using best practices such as CTEs and Intermediary CTEs**
+        - **Implementing Incremental Logic to reduce query load**
+        - **Ongoing data validation against v1 tables**
+        - **Running refactor of BQ SQL** 
         """
     )
 
