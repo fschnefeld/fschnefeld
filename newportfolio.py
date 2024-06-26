@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import nbformat
 from nbconvert import HTMLExporter
 from IPython.display import HTML
-from streamlit_embedcode import github_gist
+#from streamlit_embedcode import github_gist
 import base64
 
 # Function to display notebook from GitHub
