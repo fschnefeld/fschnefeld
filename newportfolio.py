@@ -211,7 +211,7 @@ if selected_page == "Home":
         """
     )
     # Create a button that links to the specified URL
-    st.button('My Github page'):
+    if st.button('My Github page'):
     st.write('[Click here to visit my Github page](https://github.com/fschnefeld)')
 
 if selected_page == "Dashboards":
