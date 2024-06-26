@@ -93,7 +93,7 @@ figma_html = f"""
 <style>
     #figma-embed {{
         width: 100%;
-        height: 600px;
+        height: 1200px;
     }}
 </style>
 <iframe id="figma-embed" src="{figma_url}" frameborder="0"></iframe>
@@ -199,7 +199,7 @@ if selected_page == "Home":
         **The scope of the project included converting existing UI data models into SQL models compatible with Y42 v3**
 
         **Total amount of models rebuilt: 80**
-        
+
         **Amount of SQL: 4-5,000 lines**
 
         ### Key takeaways: 
