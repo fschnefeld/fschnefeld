@@ -6,3 +6,4 @@ iPython
 gspread
 pandas
 matplotlib.pyplot
+streamlit-embedcode
