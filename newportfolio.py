@@ -149,18 +149,19 @@ selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Mod
 
 # Main content based on sidebar selection
 if selected_page == "Home":
-    st.title("Transforming Business Through Data: A Comprehensive Journey")
+    st.title("Welcome to my Portfolio!")
+
+    # Insert the button linking to GitHub page here
+    if st.button('My Github page'):
+        st.write('[Click here to visit my Github page](https://github.com/fschnefeld)')
     st.header("Introduction")
     st.markdown("""
-    Welcome to the journey of DataCorp, a retail company facing challenges in customer retention and sales growth. Our mission is to showcase how data-driven strategies can transform these challenges into opportunities for growth.
+    In my portfolio I've tried to exhibit some of the stuff that I've worked on and to give you an insight into what I do. The idea is to showcase how data-driven strategies can transform these challenges into opportunities for growth.
     """)
     st.header("Business Problem")
     st.markdown("""
     DataCorp has been experiencing a decline in customer retention and stagnant sales growth. To turn the tide, we embarked on a data-driven transformation journey.
     """)
-    # Insert the button linking to GitHub page here
-    if st.button('My Github page'):
-        st.write('[Click here to visit my Github page](https://github.com/fschnefeld)')
     
     st.markdown(slides_html, unsafe_allow_html=True)
     st.header("Data Collection and Storage")
