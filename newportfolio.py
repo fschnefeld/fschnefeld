@@ -314,14 +314,21 @@ if selected_page == "Data Pipelines":
 
     st.title("DBT Cloud Project View")
     
-    # Embed the dbt Cloud project view
-    dbt_cloud_url = "https://cloud.getdbt.com/develop/242785/projects/346218"
-    
-    dbt_cloud_html = f"""
-    <iframe src="{dbt_cloud_url}" width="100%" height="800" frameborder="0"></iframe>
+    github_url = "https://github.com/fschnefeld/portfolio/tree/own-dev"
+
+    # Embed the GitHub page using an iframe
+    github_html = f"""
+    <style>
+        .github-embed {{
+            width: 100%;
+            height: 90vh;
+            border: none;
+        }}
+    </style>
+    <iframe src="{github_url}" class="github-embed"></iframe>
     """
-    
-    st.markdown(dbt_cloud_html, unsafe_allow_html=True)
+
+    st.markdown(github_html, unsafe_allow_html=True)
 
 if selected_page == "Articles":
     st.header("Articles")
