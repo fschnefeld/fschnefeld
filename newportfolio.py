@@ -406,9 +406,8 @@ if selected_page == "Articles":
     
     articles = [
         {
-            "title": "The Power of Data Analytics in Retail",
-            "author": "Jane Doe",
-            "url": "https://example.com/power-of-data-analytics"
+            "title": "Why everyone should care about query performance",
+            "url": "https://snowfield.substack.com/p/why-everyone-should-care-about-query"
         },
         {
             "title": "Building Effective Data Pipelines",
