@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import nbformat
 from nbconvert import HTMLExporter
 from IPython.display import HTML
+from streamlit_embedcode import github_gist
+import base64
 
 # Function to display notebook from GitHub
 def display_notebook_from_github(github_repo_url):
@@ -24,27 +26,24 @@ def display_notebook_from_github(github_repo_url):
         st.write(HTML(body))
     except Exception as e:
         st.error(f"Error fetching or displaying notebook: {e}")
-def search_player_valuation(player_name):
-    api_url = "https://api.example.com/player_valuation"  # Replace with your actual API URL
-    params = {"name": player_name}
-    
-    try:
-        response = requests.get(api_url, params=params)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        
-        # Assuming API returns JSON data like {"name": "Player Name", "position": "Position", "value": 1000000}
-        data = response.json()
-        
-        # Constructing DataFrame from API response
-        if isinstance(data, list):
-            df = pd.DataFrame(data)
-        else:
-            df = pd.DataFrame([data])
-        
-        return df
-    
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching player valuation data: {e}")
+def fetch_github_content(owner, repo, path, branch='own-dev'):
+    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}?ref={branch}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        files = response.json()
+        contents = {}
+        for file in files:
+            if file['type'] == 'file':
+                file_url = file['download_url']
+                file_response = requests.get(file_url)
+                if file_response.status_code == 200:
+                    contents[file['name']] = file_response.text
+                else:
+                    st.error(f"Failed to fetch file: {file['name']}")
+        return contents
+    else:
+        st.error(f"Failed to fetch content: {response.status_code}")
+        return None
    
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
@@ -314,21 +313,18 @@ if selected_page == "Data Pipelines":
 
     st.title("DBT Cloud Project View")
     
-    github_url = "https://github.com/fschnefeld/portfolio/tree/own-dev"
+    github_owner = "fschnefeld"
+    github_repo = "portfolio"
+    folder_path = "models"
+    branch_name = "own-dev"
 
-    # Embed the GitHub page using an iframe
-    github_html = f"""
-    <style>
-        .github-embed {{
-            width: 100%;
-            height: 90vh;
-            border: none;
-        }}
-    </style>
-    <iframe src="{github_url}" class="github-embed"></iframe>
-    """
+    # Fetch the content from GitHub
+    content = fetch_github_content(github_owner, github_repo, folder_path, branch_name)
 
-    st.markdown(github_html, unsafe_allow_html=True)
+    if content:
+        for file_name, file_content in content.items():
+            st.subheader(file_name)
+            st.code(file_content, language="sql")
 
 if selected_page == "Articles":
     st.header("Articles")
