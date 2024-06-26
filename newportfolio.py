@@ -158,6 +158,10 @@ if selected_page == "Home":
     st.markdown("""
     DataCorp has been experiencing a decline in customer retention and stagnant sales growth. To turn the tide, we embarked on a data-driven transformation journey.
     """)
+    # Insert the button linking to GitHub page here
+    if st.button('My Github page'):
+        st.write('[Click here to visit my Github page](https://github.com/fschnefeld)')
+    
     st.markdown(slides_html, unsafe_allow_html=True)
     st.header("Data Collection and Storage")
     st.markdown("""
@@ -210,9 +214,6 @@ if selected_page == "Home":
         - **Running refactor of BQ SQL** 
         """
     )
-    # Create a button that links to the specified URL
-    if st.button('My Github page'):
-    st.write('[Click here to visit my Github page](https://github.com/fschnefeld)')
 
 if selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
