@@ -184,7 +184,7 @@ if selected_page == "Home":
         """
     )
 
-    dbt_project_image = 'https://files.oaiusercontent.com/file-nHBmtCSnS4hijP4U68WC6Xgy?se=2024-06-27T18%3A17%3A38Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D299%2C%20immutable&rscd=attachment%3B%20filename%3Dimage.png&sig=8vR0i8FyHE62Yvi%2BVqfBDxeu%2BUM8KCJMnV23DfdKeqs%3D'
+    dbt_project_image = 'https://files.oaiusercontent.com/file-nHBmtCSnS4hijP4U68WC6Xgy?se=2024-06-27T21%3A29%3A00Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D299%2C%20immutable&rscd=attachment%3B%20filename%3Dimage.png&sig=wuiatKlkoCTQ6iwW5aSEWuDX3SlDnEI2oTxetLfKuOY%3D'
     st.header("The below image gives a idea of the project. Taken from my own dbt")
     st.markdown(
         """
@@ -361,7 +361,7 @@ if selected_page == "Data Analysis":
             - **1** indicates a perfect positive correlation,
             - **-1** indicates a perfect negative correlation, and
             - **0** indicates no correlation.
-            
+
             ### Key Insights:
 
             1. **Rating**:
