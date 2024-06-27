@@ -378,6 +378,13 @@ if selected_page == "Data Analysis":
 
         # Histogram of revenue
         st.header('Rating Distribution')
+        st.markdown(
+            """
+            ## Ratings increase with the average meal price, likely fulfilling expectations. 
+
+            ### Although below 5.0 in ratings seem to have a plateau
+            """
+        )
         fig, ax = plt.subplots(figsize=(12,8))
         ax.hist(filtered_data['Rating'], bins=10)
         ax.set_xlabel('Rating')
