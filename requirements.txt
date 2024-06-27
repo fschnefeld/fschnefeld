@@ -7,3 +7,4 @@ gspread
 pandas
 matplotlib.pyplot
 streamlit-embedcode
+bokeh
