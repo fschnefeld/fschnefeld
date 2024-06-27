@@ -4,5 +4,9 @@ nbformat
 nbconvert
 iPython
 gspread
-matplotlib
 pandas
+matplotlib.pyplot
+streamlit-embedcode
+bokeh
+pygwalker
+seaborn
