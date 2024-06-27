@@ -295,91 +295,91 @@ if selected_page == "Data Analysis":
     file_path = 'restaurant_data.csv'
     data = load_data(file_path)
 
-   if data is not None:
-    # Display the column names
-    st.header('Dataset Column Names')
-    st.write(data.columns)
+    if data is not None:
+        # Display the column names
+        st.header('Dataset Column Names')
+        st.write(data.columns)
 
-    # Title and Description
-    st.title('Restaurant Revenue Prediction Data Analysis')
-    st.write("""
-    This app performs interactive data analysis on the Restaurant Revenue Prediction dataset.
-    """)
+        # Title and Description
+        st.title('Restaurant Revenue Prediction Data Analysis')
+        st.write("""
+        This app performs interactive data analysis on the Restaurant Revenue Prediction dataset.
+        """)
 
-    # Sidebar for filtering data
-    st.sidebar.header('Filter Options')
+        # Sidebar for filtering data
+        st.sidebar.header('Filter Options')
 
-    # Check if 'City' and 'Type' columns exist
-    if 'City' in data.columns and 'Type' in data.columns:
-        # Filter by City
-        unique_cities = data['City'].unique()
-        selected_cities = st.sidebar.multiselect('Select City', unique_cities, unique_cities)
+        # Check if 'City' and 'Type' columns exist
+        if 'City' in data.columns and 'Type' in data.columns:
+            # Filter by City
+            unique_cities = data['City'].unique()
+            selected_cities = st.sidebar.multiselect('Select City', unique_cities, unique_cities)
 
-        # Filter by Type
-        unique_types = data['Type'].unique()
-        selected_types = st.sidebar.multiselect('Select Type', unique_types, unique_types)
-    else:
-        st.sidebar.write("Columns 'City' and 'Type' not found in the dataset.")
-
-    # Filter by Revenue Range
-    if 'revenue' in data.columns:
-        min_revenue = int(data['revenue'].min())
-        max_revenue = int(data['revenue'].max())
-        selected_revenue = st.sidebar.slider('Select Revenue Range', min_revenue, max_revenue, (min_revenue, max_revenue))
-    else:
-        st.sidebar.write("Column 'revenue' not found in the dataset.")
-
-    # Filter data based on selections if columns exist
-    if 'City' in data.columns and 'Type' in data.columns and 'revenue' in data.columns:
-        filtered_data = data[
-            (data['City'].isin(selected_cities)) &
-            (data['Type'].isin(selected_types)) &
-            (data['revenue'] >= selected_revenue[0]) &
-            (data['revenue'] <= selected_revenue[1])
-        ]
-
-        # Display filtered data
-        st.header('Filtered Data')
-        st.write(f'Data Dimensions: {filtered_data.shape[0]} rows and {filtered_data.shape[1]} columns')
-        st.dataframe(filtered_data)
-
-        # Correlation Heatmap
-        st.header('Correlation Heatmap')
-        corr = filtered_data.corr()
-        fig, ax = plt.subplots()
-        sns.heatmap(corr, annot=True, ax=ax)
-        st.pyplot(fig)
-
-        # Scatter plot of revenue vs other features
-        st.header('Scatter Plot')
-        x_axis = st.selectbox('Select X-axis feature', filtered_data.columns)
-        y_axis = 'revenue'
-        fig, ax = plt.subplots()
-        ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
-        ax.set_xlabel(x_axis)
-        ax.set_ylabel(y_axis)
-        st.pyplot(fig)
-
-        # Histogram of revenue
-        st.header('Revenue Distribution')
-        fig, ax = plt.subplots()
-        ax.hist(filtered_data['revenue'], bins=30)
-        ax.set_xlabel('Revenue')
-        ax.set_ylabel('Frequency')
-        st.pyplot(fig)
-
-        # Pairplot
-        st.header('Pairplot')
-        selected_features = st.multiselect('Select features for pairplot', data.columns, default=['P1', 'P2', 'revenue'])
-        if len(selected_features) > 1:
-            fig = sns.pairplot(filtered_data[selected_features])
-            st.pyplot(fig)
+            # Filter by Type
+            unique_types = data['Type'].unique()
+            selected_types = st.sidebar.multiselect('Select Type', unique_types, unique_types)
         else:
-            st.write("Select at least two features for the pairplot.")
-    else:
-        st.write("Please check the columns and ensure the dataset contains 'City', 'Type', and 'revenue'.")
-    else:
-    st.write("Please check the file path and ensure the dataset is available.")
+            st.sidebar.write("Columns 'City' and 'Type' not found in the dataset.")
+
+        # Filter by Revenue Range
+        if 'revenue' in data.columns:
+            min_revenue = int(data['revenue'].min())
+            max_revenue = int(data['revenue'].max())
+            selected_revenue = st.sidebar.slider('Select Revenue Range', min_revenue, max_revenue, (min_revenue, max_revenue))
+        else:
+            st.sidebar.write("Column 'revenue' not found in the dataset.")
+
+        # Filter data based on selections if columns exist
+        if 'City' in data.columns and 'Type' in data.columns and 'revenue' in data.columns:
+            filtered_data = data[
+                (data['City'].isin(selected_cities)) &
+                (data['Type'].isin(selected_types)) &
+                (data['revenue'] >= selected_revenue[0]) &
+                (data['revenue'] <= selected_revenue[1])
+            ]
+
+            # Display filtered data
+            st.header('Filtered Data')
+            st.write(f'Data Dimensions: {filtered_data.shape[0]} rows and {filtered_data.shape[1]} columns')
+            st.dataframe(filtered_data)
+
+            # Correlation Heatmap
+            st.header('Correlation Heatmap')
+            corr = filtered_data.corr()
+            fig, ax = plt.subplots()
+            sns.heatmap(corr, annot=True, ax=ax)
+            st.pyplot(fig)
+
+            # Scatter plot of revenue vs other features
+            st.header('Scatter Plot')
+            x_axis = st.selectbox('Select X-axis feature', filtered_data.columns)
+            y_axis = 'revenue'
+            fig, ax = plt.subplots()
+            ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
+            ax.set_xlabel(x_axis)
+            ax.set_ylabel(y_axis)
+            st.pyplot(fig)
+
+            # Histogram of revenue
+            st.header('Revenue Distribution')
+            fig, ax = plt.subplots()
+            ax.hist(filtered_data['revenue'], bins=30)
+            ax.set_xlabel('Revenue')
+            ax.set_ylabel('Frequency')
+            st.pyplot(fig)
+
+            # Pairplot
+            st.header('Pairplot')
+            selected_features = st.multiselect('Select features for pairplot', data.columns, default=['P1', 'P2', 'revenue'])
+            if len(selected_features) > 1:
+                fig = sns.pairplot(filtered_data[selected_features])
+                st.pyplot(fig)
+            else:
+                st.write("Select at least two features for the pairplot.")
+        else:
+            st.write("Please check the columns and ensure the dataset contains 'City', 'Type', and 'revenue'.")
+        else:
+        st.write("Please check the file path and ensure the dataset is available.")
     
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
