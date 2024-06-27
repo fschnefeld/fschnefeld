@@ -295,16 +295,22 @@ if selected_page == "Data Analysis":
     file_path = 'restaurant_data.csv'
     data = load_data(file_path)
 
-    if data is not None:
-        # Title and Description
-        st.title('Restaurant Revenue Prediction Data Analysis')
-        st.write("""
-        This app performs interactive data analysis on the Restaurant Revenue Prediction dataset.
-        """)
+   if data is not None:
+    # Display the column names
+    st.header('Dataset Column Names')
+    st.write(data.columns)
 
-        # Sidebar for filtering data
-        st.sidebar.header('Filter Options')
+    # Title and Description
+    st.title('Restaurant Revenue Prediction Data Analysis')
+    st.write("""
+    This app performs interactive data analysis on the Restaurant Revenue Prediction dataset.
+    """)
 
+    # Sidebar for filtering data
+    st.sidebar.header('Filter Options')
+
+    # Check if 'City' and 'Type' columns exist
+    if 'City' in data.columns and 'Type' in data.columns:
         # Filter by City
         unique_cities = data['City'].unique()
         selected_cities = st.sidebar.multiselect('Select City', unique_cities, unique_cities)
@@ -312,13 +318,19 @@ if selected_page == "Data Analysis":
         # Filter by Type
         unique_types = data['Type'].unique()
         selected_types = st.sidebar.multiselect('Select Type', unique_types, unique_types)
+    else:
+        st.sidebar.write("Columns 'City' and 'Type' not found in the dataset.")
 
-        # Filter by Revenue Range
+    # Filter by Revenue Range
+    if 'revenue' in data.columns:
         min_revenue = int(data['revenue'].min())
         max_revenue = int(data['revenue'].max())
         selected_revenue = st.sidebar.slider('Select Revenue Range', min_revenue, max_revenue, (min_revenue, max_revenue))
+    else:
+        st.sidebar.write("Column 'revenue' not found in the dataset.")
 
-        # Filter data based on selections
+    # Filter data based on selections if columns exist
+    if 'City' in data.columns and 'Type' in data.columns and 'revenue' in data.columns:
         filtered_data = data[
             (data['City'].isin(selected_cities)) &
             (data['Type'].isin(selected_types)) &
@@ -364,6 +376,10 @@ if selected_page == "Data Analysis":
             st.pyplot(fig)
         else:
             st.write("Select at least two features for the pairplot.")
+    else:
+        st.write("Please check the columns and ensure the dataset contains 'City', 'Type', and 'revenue'.")
+else:
+    st.write("Please check the file path and ensure the dataset is available.")
     
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
