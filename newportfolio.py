@@ -378,7 +378,7 @@ if selected_page == "Data Analysis":
                 st.write("Select at least two features for the pairplot.")
         else:
             st.write("Please check the columns and ensure the dataset contains 'City', 'Type', and 'revenue'.")
-        else:
+    else:
             st.write("Please check the file path and ensure the dataset is available.")
     
 if selected_page == "Data Pipelines":
