@@ -7,7 +7,7 @@ from nbconvert import HTMLExporter
 from IPython.display import HTML
 #from streamlit_embedcode import github_gist
 import base64
-import pygwalker as pyg
+#import pygwalker as pyg
 
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
