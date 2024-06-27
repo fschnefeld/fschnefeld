@@ -379,7 +379,7 @@ if selected_page == "Data Analysis":
         else:
             st.write("Please check the columns and ensure the dataset contains 'City', 'Type', and 'revenue'.")
         else:
-        st.write("Please check the file path and ensure the dataset is available.")
+            st.write("Please check the file path and ensure the dataset is available.")
     
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
