@@ -396,7 +396,8 @@ if selected_page == "Data Analysis":
         st.markdown(
             """
            # Pairplot Analysis
-            ## The pairplot below visualizes the relationships between three key variables: Rating, Seating Capacity, and Average Meal Price. This comprehensive visualization helps us understand the distribution and potential correlations between these variables.
+            ## The pairplot below visualizes the relationships between three key variables: Rating, Seating Capacity, and Average Meal Price. 
+            ### This comprehensive visualization helps us understand the distribution and potential correlations between these variables.
 
 
 
