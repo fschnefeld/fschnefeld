@@ -179,6 +179,15 @@ if selected_page == "Home":
         """
     )
 
+    dbt_project_image = 'https://files.oaiusercontent.com/file-nHBmtCSnS4hijP4U68WC6Xgy?se=2024-06-27T13%3A27%3A31Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D299%2C%20immutable&rscd=attachment%3B%20filename%3Dimage.png&sig=mJHQdQMHJTBCjCmbo/lieyIbc7VRo1bDDzbY6tPlTSg%3D'
+    st.header("The below image gives a idea of the project. Taken from my own dbt")
+    st.markdown(
+        """
+        
+        """
+    )
+    st.image(image=dbt_project_image, use_column_width=auto)
+
 if selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
     st.markdown("""
