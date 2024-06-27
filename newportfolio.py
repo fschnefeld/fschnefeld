@@ -362,14 +362,15 @@ if selected_page == "Data Analysis":
 
          # Scatter plot of average meal price vs. revenue
         st.header('Scatter Plot of Average Meal Price vs. Revenue')
-        
-        fig, ax = plt.subplots()
-        ax.scatter(filtered_data['Average Meal Price'], filtered_data['revenue'])
-        ax.set_xlabel('Average Meal Price')
-        ax.set_ylabel('Revenue')
-        ax.set_title('Average Meal Price vs. Revenue')
-        st.pyplot(fig)
-        
+        if 'revenue' in filtered_data.columns and 'Average Meal Price' in filtered_data.columns:
+            fig, ax = plt.subplots()
+            ax.scatter(filtered_data['Average Meal Price'], filtered_data['revenue'])
+            ax.set_xlabel('Average Meal Price')
+            ax.set_ylabel('Revenue')
+            ax.set_title('Average Meal Price vs. Revenue')
+            st.pyplot(fig)
+        else:
+            st.write("Columns 'Average Meal Price' and 'revenue' are not available in the filtered data.")
 
         # Histogram of revenue
         st.header('Revenue Distribution')
