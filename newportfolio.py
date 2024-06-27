@@ -268,6 +268,14 @@ print(classification_report(y_test, y_pred))'''
 if selected_page == "ML Models":
     st.header("Machine Learning Models")
     st.markdown(ml_model_html, unsafe_allow_html=True)
+
+if selected_page == "Data Analysis":
+    st.header("Data Analysis")
+    st.markdown("""
+    ## Welcome to the Data Analysis page
+    This page allows you to interact with a sample analysis I have created using a demo dataset.
+    """)
+    
     
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
