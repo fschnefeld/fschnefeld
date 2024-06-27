@@ -360,18 +360,22 @@ if selected_page == "Data Analysis":
         else:
             st.write("Not enough numeric columns for correlation heatmap.")
 
-        # Scatter plot of revenue vs other features
         st.header('Scatter Plot')
-        x_axis = st.selectbox('Select X-axis feature', filtered_data.columns)
-        y_axis = 'revenue'
-        if x_axis != y_axis:
-            fig, ax = plt.subplots()
-            ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
-            ax.set_xlabel(x_axis)
-            ax.set_ylabel(y_axis)
-            st.pyplot(fig)
+        if 'revenue' in filtered_data.columns:
+            numeric_cols = filtered_data.select_dtypes(include=['float64', 'int64']).columns
+            numeric_cols = numeric_cols.drop('revenue', errors='ignore')
+            if len(numeric_cols) > 0:
+                x_axis = st.selectbox('Select X-axis feature', numeric_cols)
+                y_axis = 'revenue'
+                fig, ax = plt.subplots()
+                ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
+                ax.set_xlabel(x_axis)
+                ax.set_ylabel(y_axis)
+                st.pyplot(fig)
+            else:
+                st.write("Not enough numeric columns for scatter plot.")
         else:
-            st.write("Please select a different feature for the X-axis.")
+            st.write("Revenue column is not available in the filtered data.")
 
         # Histogram of revenue
         st.header('Revenue Distribution')
