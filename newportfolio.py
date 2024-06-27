@@ -369,19 +369,19 @@ if selected_page == "Data Analysis":
         if 'Revenue' in filtered_data.columns and 'Average Meal Price' in filtered_data.columns:
             fig, ax = plt.subplots(figsize=(12,8))
             ax.scatter(filtered_data['Average Meal Price'], filtered_data['Revenue'])
-            ax.set_xlabel('Average Meal Price')
-            ax.set_ylabel('Revenue')
+            ax.set_xlabel('Average Meal Price in $')
+            ax.set_ylabel('Revenue in $M')
             ax.set_title('Average Meal Price vs. Revenue')
             st.pyplot(fig)
         else:
             st.write("Columns 'Average Meal Price' and 'revenue' are not available in the filtered data.")
 
         # Histogram of revenue
-        st.header('Revenue Distribution')
+        st.header('Rating Distribution')
         fig, ax = plt.subplots(figsize=(12,8))
-        ax.hist(filtered_data['Revenue'], bins=30)
-        ax.set_xlabel('Revenue')
-        ax.set_ylabel('Frequency')
+        ax.hist(filtered_data['Rating'], bins=10)
+        ax.set_xlabel('Rating')
+        ax.set_ylabel('Average Meal Price')
         st.pyplot(fig)
 
         # Pairplot
