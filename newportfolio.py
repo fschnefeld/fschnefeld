@@ -393,6 +393,49 @@ if selected_page == "Data Analysis":
 
         # Pairplot
         st.header('Pairplot')
+        st.markdown(
+            """
+           # Pairplot Analysis
+            ## The pairplot below visualizes the relationships between three key variables: Rating, Seating Capacity, and Average Meal Price. This comprehensive visualization helps us understand the distribution and potential correlations between these variables.
+
+
+
+            ### Key Insights:
+            Rating Distribution:
+
+            - The ratings range from 3.0 to 5.0, with a relatively even distribution across this range.
+            - There are no significant peaks or troughs in the ratings, indicating a diverse set of ratings without any strong bias towards a particular rating level.
+            
+            ### Seating Capacity Distribution:
+
+            - Seating capacities in the dataset range from approximately 30 to 90.
+            - The distribution of seating capacities is fairly uniform, suggesting a wide range of restaurant sizes in the dataset.
+            
+            ### Average Meal Price Distribution:
+
+            - Average meal prices range from around 30 to 70.
+            - There are slight peaks in certain price ranges, indicating some common pricing strategies among the restaurants.
+            
+            ### Rating vs. Seating Capacity:
+
+            - The scatter plot does not show any clear correlation between rating and seating capacity.
+            - Restaurants with different seating capacities have a wide range of ratings.
+            
+            ### Rating vs. Average Meal Price:
+
+            - There is no distinct correlation observed between the rating and average meal price.
+            - Restaurants with various meal prices can have similar ratings.
+            
+            ### Seating Capacity vs. Average Meal Price:
+
+            - The scatter plot shows no strong correlation between seating capacity and average meal price.
+            - Restaurants of varying sizes have diverse pricing strategies.
+            
+            ## Conclusion:
+            
+            The pairplot reveals that there are no strong linear relationships between Rating, Seating Capacity, and Average Meal Price in this dataset. Each variable appears to be independently distributed without significant correlations, indicating that other factors may influence restaurant ratings, capacities, and pricing strategies.
+            """
+        )
         selected_features = st.multiselect('Select features for pairplot', numeric_cols, default=list(numeric_cols[:3]))
         if len(selected_features) > 1:
             fig = sns.pairplot(filtered_data[selected_features])
