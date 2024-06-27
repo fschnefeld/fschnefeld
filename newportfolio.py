@@ -6,6 +6,8 @@ import nbformat
 from nbconvert import HTMLExporter
 from IPython.display import HTML
 #from streamlit_embedcode import github_gist
+import matplotlib.pyplot as plt
+import seaborn as sns
 import base64
 #import pygwalker as pyg
 
@@ -279,7 +281,7 @@ if selected_page == "Data Analysis":
 
     @st.cache
     def load_data():
-        data = pd.read_csv('path/to/your/restaurant-revenue-prediction-dataset.csv')
+        data = pd.read_csv('.../portfolio/restaurant_data.csv')
         return data
 
     data = load_data()
