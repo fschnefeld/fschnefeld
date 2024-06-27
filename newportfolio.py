@@ -186,7 +186,7 @@ if selected_page == "Home":
         
         """
     )
-    st.image(image=dbt_project_image, use_column_width=auto)
+    st.image(image=dbt_project_image, use_column_width="auto")
 
 if selected_page == "Dashboards":
     st.header("Insights: Tableau Dashboard")
