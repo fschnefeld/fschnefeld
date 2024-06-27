@@ -282,14 +282,14 @@ if selected_page == "Data Analysis":
     df = pd.read_csv(url)
 
     # Create PyGWalker visualization
-    gwalker = pyg.walk(df)
+    pygwalker = pyg.walk(df)
 
     # Streamlit app
     st.title("Interactive DataFrame Exploration with PyGWalker")
     st.write("This app demonstrates how to create an interactive UI for a pandas DataFrame using PyGWalker.")
 
     # Render PyGWalker visualization
-    st.markdown(gwalker.to_html(), unsafe_allow_html=True)
+    st.markdown(pygwalker.to_html(), unsafe_allow_html=True)
     
 if selected_page == "Data Pipelines":
     st.header("Data Pipelines")
