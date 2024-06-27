@@ -360,22 +360,17 @@ if selected_page == "Data Analysis":
         else:
             st.write("Not enough numeric columns for correlation heatmap.")
 
-        st.header('Scatter Plot')
-        if 'revenue' in filtered_data.columns:
-            numeric_cols = filtered_data.select_dtypes(include=['float64', 'int64']).columns
-            numeric_cols = numeric_cols.drop('revenue', errors='ignore')
-            if len(numeric_cols) > 0:
-                x_axis = st.selectbox('Select X-axis feature', numeric_cols)
-                y_axis = 'revenue'
-                fig, ax = plt.subplots()
-                ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
-                ax.set_xlabel(x_axis)
-                ax.set_ylabel(y_axis)
-                st.pyplot(fig)
-            else:
-                st.write("Not enough numeric columns for scatter plot.")
+         # Scatter plot of average meal price vs. revenue
+        st.header('Scatter Plot of Average Meal Price vs. Revenue')
+        if 'revenue' in filtered_data.columns and 'Average Meal Price' in filtered_data.columns:
+            fig, ax = plt.subplots()
+            ax.scatter(filtered_data['Average Meal Price'], filtered_data['revenue'])
+            ax.set_xlabel('Average Meal Price')
+            ax.set_ylabel('Revenue')
+            ax.set_title('Average Meal Price vs. Revenue')
+            st.pyplot(fig)
         else:
-            st.write("Revenue column is not available in the filtered data.")
+            st.write("Columns 'Average Meal Price' and 'revenue' are not available in the filtered data.")
 
         # Histogram of revenue
         st.header('Revenue Distribution')
