@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
 import matplotlib.pyplot as plt
 import nbformat
 from nbconvert import HTMLExporter
