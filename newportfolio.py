@@ -351,20 +351,27 @@ if selected_page == "Data Analysis":
 
         # Correlation Heatmap
         st.header('Correlation Heatmap')
-        corr = filtered_data.corr()
-        fig, ax = plt.subplots()
-        sns.heatmap(corr, annot=True, ax=ax)
-        st.pyplot(fig)
+        numeric_cols = filtered_data.select_dtypes(include=['float64', 'int64']).columns
+        if len(numeric_cols) > 1:
+            corr = filtered_data[numeric_cols].corr()
+            fig, ax = plt.subplots()
+            sns.heatmap(corr, annot=True, ax=ax)
+            st.pyplot(fig)
+        else:
+            st.write("Not enough numeric columns for correlation heatmap.")
 
         # Scatter plot of revenue vs other features
         st.header('Scatter Plot')
         x_axis = st.selectbox('Select X-axis feature', filtered_data.columns)
         y_axis = 'revenue'
-        fig, ax = plt.subplots()
-        ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
-        ax.set_xlabel(x_axis)
-        ax.set_ylabel(y_axis)
-        st.pyplot(fig)
+        if x_axis != y_axis:
+            fig, ax = plt.subplots()
+            ax.scatter(filtered_data[x_axis], filtered_data[y_axis])
+            ax.set_xlabel(x_axis)
+            ax.set_ylabel(y_axis)
+            st.pyplot(fig)
+        else:
+            st.write("Please select a different feature for the X-axis.")
 
         # Histogram of revenue
         st.header('Revenue Distribution')
@@ -376,7 +383,7 @@ if selected_page == "Data Analysis":
 
         # Pairplot
         st.header('Pairplot')
-        selected_features = st.multiselect('Select features for pairplot', data.columns, default=['P1', 'P2', 'revenue'])
+        selected_features = st.multiselect('Select features for pairplot', numeric_cols, default=list(numeric_cols[:3]))
         if len(selected_features) > 1:
             fig = sns.pairplot(filtered_data[selected_features])
             st.pyplot(fig)
