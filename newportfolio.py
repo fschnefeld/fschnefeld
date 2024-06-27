@@ -108,7 +108,7 @@ st.set_page_config(
 
 # Sidebar buttons for navigation
 st.sidebar.header("Navigation")
-selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Pipelines", "Articles", "API"], index=0)
+selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Analysis", "Data Pipelines", "Articles", "API"], index=0)
 
 # Main content based on sidebar selection
 if selected_page == "Home":
