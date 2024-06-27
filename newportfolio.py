@@ -361,9 +361,7 @@ if selected_page == "Data Analysis":
             - **1** indicates a perfect positive correlation,
             - **-1** indicates a perfect negative correlation, and
             - **0** indicates no correlation.
-
-            ![Correlation Heatmap](file:///mnt/data/image.png)
-
+            
             ### Key Insights:
 
             1. **Rating**:
