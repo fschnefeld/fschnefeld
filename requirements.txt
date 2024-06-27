@@ -9,3 +9,4 @@ matplotlib.pyplot
 streamlit-embedcode
 bokeh
 pygwalker
+seaborn
