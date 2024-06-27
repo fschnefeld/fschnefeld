@@ -354,7 +354,7 @@ if selected_page == "Data Analysis":
         numeric_cols = filtered_data.select_dtypes(include=['float64', 'int64']).columns
         if len(numeric_cols) > 1:
             corr = filtered_data[numeric_cols].corr()
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize=(12,8))
             sns.heatmap(corr, annot=True, ax=ax)
             st.pyplot(fig)
         else:
@@ -367,7 +367,7 @@ if selected_page == "Data Analysis":
         # Scatter plot of average meal price vs. revenue
         st.header('Scatter Plot of Average Meal Price vs. Revenue')
         if 'Revenue' in filtered_data.columns and 'Average Meal Price' in filtered_data.columns:
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize=(12,8))
             ax.scatter(filtered_data['Average Meal Price'], filtered_data['Revenue'])
             ax.set_xlabel('Average Meal Price')
             ax.set_ylabel('Revenue')
@@ -378,7 +378,7 @@ if selected_page == "Data Analysis":
 
         # Histogram of revenue
         st.header('Revenue Distribution')
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(12,8))
         ax.hist(filtered_data['Revenue'], bins=30)
         ax.set_xlabel('Revenue')
         ax.set_ylabel('Frequency')
