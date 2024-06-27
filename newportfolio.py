@@ -351,6 +351,75 @@ if selected_page == "Data Analysis":
 
         # Correlation Heatmap
         st.header('Correlation Heatmap')
+        st.markdown(
+            """
+            
+
+            ## Correlation Heatmap Analysis
+
+            The heatmap below illustrates the correlation coefficients between various features in the dataset. Correlation coefficients range from -1 to 1, where:
+            - **1** indicates a perfect positive correlation,
+            - **-1** indicates a perfect negative correlation, and
+            - **0** indicates no correlation.
+
+            ![Correlation Heatmap](file:///mnt/data/image.png)
+
+            ### Key Insights:
+
+            1. **Rating**:
+            - Shows a moderate positive correlation with **Marketing Budget** (0.26) and **Social Media Followers** (0.29).
+            - Very low correlations with other variables, indicating ratings are not strongly influenced by most other features.
+
+            2. **Seating Capacity**:
+            - Strong positive correlation with **Marketing Budget** (0.51) and **Social Media Followers** (0.50).
+            - Moderate positive correlation with **Weekend Reservations** (0.44) and **Weekday Reservations** (0.42).
+            - Significant positive correlation with **Revenue** (0.68), suggesting larger seating capacities generally lead to higher revenue.
+
+            3. **Average Meal Price**:
+            - Weak to moderate positive correlation with **Revenue** (0.69).
+            - Very low correlations with most other variables, indicating meal pricing is relatively independent of other features.
+
+            4. **Marketing Budget**:
+            - Very strong positive correlation with **Social Media Followers** (0.99), indicating that higher marketing budgets are associated with more social media followers.
+            - Moderate correlation with **Seating Capacity** (0.51) and **Revenue** (0.37).
+
+            5. **Social Media Followers**:
+            - Very strong positive correlation with **Marketing Budget** (0.99).
+            - Moderate correlation with **Revenue** (0.35).
+
+            6. **Chef Experience Years**:
+            - Generally low correlations with other variables, indicating that chef experience does not significantly correlate with the other features in the dataset.
+
+            7. **Number of Reviews**:
+            - Low correlations with other variables, indicating the number of reviews is relatively independent of other features.
+
+            8. **Avg Review Length**:
+            - Low correlations with other variables, suggesting the average length of reviews does not significantly correlate with other features.
+
+            9. **Ambience Score**:
+            - Low correlations with other variables, indicating ambience scores are not strongly influenced by other features.
+
+            10. **Service Quality Score**:
+                - Low correlations with other variables, indicating service quality scores are relatively independent.
+
+            11. **Weekend Reservations**:
+                - Moderate correlation with **Seating Capacity** (0.44), **Marketing Budget** (0.23), **Social Media Followers** (0.22), and **Revenue** (0.29).
+
+            12. **Weekday Reservations**:
+                - Moderate correlation with **Seating Capacity** (0.42), **Marketing Budget** (0.22), **Social Media Followers** (0.21), and **Revenue** (0.27).
+
+            13. **Revenue**:
+                - Strong positive correlations with **Seating Capacity** (0.68), **Average Meal Price** (0.69), **Marketing Budget** (0.37), and **Social Media Followers** (0.35).
+                - Moderate positive correlations with **Weekend Reservations** (0.29) and **Weekday Reservations** (0.27).
+
+            ### Conclusion:
+            The correlation heatmap reveals several interesting relationships within the dataset. Notably, **Revenue** is strongly correlated with **Seating Capacity** and **Average Meal Price**, while **Marketing Budget** and **Social Media Followers** are almost perfectly correlated. These insights can help in understanding which features most significantly impact revenue and can be further explored for strategic decision-making.
+
+            ---
+
+            This markdown description provides a detailed explanation of the correlation heatmap, highlighting the key relationships and insights from the data.
+            """
+        )
         numeric_cols = filtered_data.select_dtypes(include=['float64', 'int64']).columns
         if len(numeric_cols) > 1:
             corr = filtered_data[numeric_cols].corr()
