@@ -7,7 +7,6 @@ from nbconvert import HTMLExporter
 from IPython.display import HTML
 #from streamlit_embedcode import github_gist
 import base64
-import bokeh
 import pygwalker as pyg
 
 # Set the URLs for embedding
