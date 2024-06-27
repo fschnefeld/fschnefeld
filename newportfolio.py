@@ -292,7 +292,7 @@ if selected_page == "Data Analysis":
             return None
 
     # Update the file path to your dataset
-    file_path = '...\portfolio\restaurant_data.csv'
+    file_path = '.../portfolio/restaurant_data.csv'
     data = load_data(file_path)
 
     if data is not None:
