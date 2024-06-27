@@ -8,43 +8,6 @@ from IPython.display import HTML
 #from streamlit_embedcode import github_gist
 import base64
 
-# Function to display notebook from GitHub
-def display_notebook_from_github(github_repo_url):
-    try:
-        # Fetch the notebook from GitHub
-        response = requests.get(github_repo_url)
-        notebook_content = response.text
-        
-        # Parse the notebook using nbformat
-        notebook_node = nbformat.reads(notebook_content, as_version=4)
-        
-        # Convert the notebook to HTML using nbconvert
-        html_exporter = HTMLExporter()
-        (body, resources) = html_exporter.from_notebook_node(notebook_node)
-        
-        # Display the notebook HTML using IPython display
-        st.write(HTML(body))
-    except Exception as e:
-        st.error(f"Error fetching or displaying notebook: {e}")
-def fetch_github_content(owner, repo, path, branch='own-dev'):
-    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{path}?ref={branch}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        files = response.json()
-        contents = {}
-        for file in files:
-            if file['type'] == 'file':
-                file_url = file['download_url']
-                file_response = requests.get(file_url)
-                if file_response.status_code == 200:
-                    contents[file['name']] = file_response.text
-                else:
-                    st.error(f"Failed to fetch file: {file['name']}")
-        return contents
-    else:
-        st.error(f"Failed to fetch content: {response.status_code}")
-        return None
-   
 # Set the URLs for embedding
 looker_url = "https://lookerstudio.google.com/embed/reporting/bf900ecb-3657-4901-b5bd-ab8899411118/page/p_e27a3gsx4c"
 looker_html = f"""
