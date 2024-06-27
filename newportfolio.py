@@ -364,7 +364,7 @@ if selected_page == "Data Analysis":
         st.header('Scatter Plot of Average Meal Price vs. Revenue')
         
         fig, ax = plt.subplots()
-        ax.scatter(data['Average Meal Price'], data['revenue'])
+        ax.scatter(filtered_data['Average Meal Price'], filtered_data['revenue'])
         ax.set_xlabel('Average Meal Price')
         ax.set_ylabel('Revenue')
         ax.set_title('Average Meal Price vs. Revenue')
