@@ -373,7 +373,7 @@ if selected_page == "Data Analysis":
             ax.set_ylabel('Revenue')
             ax.set_title('Average Meal Price vs. Revenue')
             st.pyplot(fig)
-         else:
+        else:
             st.write("Columns 'Average Meal Price' and 'revenue' are not available in the filtered data.")
 
         # Histogram of revenue
