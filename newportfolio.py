@@ -7,7 +7,7 @@ from nbconvert import HTMLExporter
 from IPython.display import HTML
 #from streamlit_embedcode import github_gist
 import matplotlib.pyplot as plt
-#import seaborn as sns
+import seaborn as sns
 import base64
 #import pygwalker as pyg
 
