@@ -5,7 +5,7 @@ nbconvert
 iPython
 gspread
 pandas
-matplotlib.pyplot
+matplotlib
 streamlit-embedcode
 bokeh
 pygwalker
