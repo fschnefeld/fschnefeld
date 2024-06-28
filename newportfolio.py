@@ -184,7 +184,7 @@ if selected_page == "Home":
         """
     )
 
-    dbt_project_image = 'dbtscreenshot.png'
+    dbt_project_image = 'portfolio/dbtscreenshot.png'
     st.header("The below image gives a idea of the project. Taken from my own dbt")
     st.markdown(
         """
