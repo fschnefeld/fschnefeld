@@ -274,6 +274,16 @@ if selected_page == "ML Models":
     st.header("Machine Learning Models")
     st.markdown(ml_model_html, unsafe_allow_html=True)
 
+    st.markdown(
+        """ 
+        ## An example of an MMM model that optimizes Media Mix
+        """
+    )
+    colab_link = "https://colab.research.google.com/drive/130Giwi-zEbWWyx1teReM7QnPICrrFvWg?usp=sharing"
+    st.markdown(f"""
+<iframe src="{colab_link}" width="100%" height="800" frameborder="0" allowfullscreen></iframe>
+""", unsafe_allow_html=True)
+
 if selected_page == "Data Analysis":
     st.header("Data Analysis")
     st.markdown("""
