@@ -544,6 +544,15 @@ if selected_page == "Data Pipelines":
     st.markdown(sheets_html, unsafe_allow_html=True)
 
     st.title("DBT Cloud Project View")
+
+    dbt_project_image = 'https://scontent-cph2-1.xx.fbcdn.net/v/t1.15752-9/436342382_851569153497913_296327280597567392_n.png?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_ohc=3ITtLO5d3aEQ7kNvgHpKD6H&_nc_ht=scontent-cph2-1.xx&oh=03_Q7cD1QFBPgqEM7BnnXjp5Yl4nOeCxsH3zC-o5A-MGs7XZFq0Uw&oe=66A68988'
+    st.header("The below image gives a idea of the project. Taken from my own dbt")
+    st.markdown(
+        """
+        
+        """
+    )
+    st.image(image=dbt_project_image, use_column_width="auto")
     
     code_2 = '''-- models/pnl_analysis.sql
 with sales_orders_table as {{ ref('core_orders')}}
