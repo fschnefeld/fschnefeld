@@ -194,9 +194,9 @@ if selected_page == "Home":
     st.image(image=dbt_project_image, use_column_width="auto")
 
 if selected_page == "Dashboards":
-    st.header("Insights: Tableau Dashboard")
+    st.header("Insights: Dashboard designs")
     st.markdown("""
-    Here is an interactive Tableau dashboard that illustrates the insights derived from our data analysis.
+    Here is an interactive Figma file that illustrates the different types of dashboard designs.
     """)
     st.markdown(figma_html, unsafe_allow_html=True)
 
