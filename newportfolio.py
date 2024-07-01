@@ -281,7 +281,7 @@ if selected_page == "ML Models":
     )
 
     mlmodel_image = "https://scontent-cph2-1.xx.fbcdn.net/v/t1.15752-9/448930133_25826163940365008_4428113220871033979_n.png?_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_ohc=LonG0iO8ia0Q7kNvgGb6db0&_nc_ht=scontent-cph2-1.xx&oh=03_Q7cD1QGpOPlZZj7Y-p0FWb65wsdRJa7qhHfUAodxLr7puZaB_A&oe=66AA2066"
-    st.image(image=dbt_project_image, use_column_width="auto")
+    st.image(image=mlmodel_image, use_column_width="auto")
     
     
 
