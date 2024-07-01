@@ -279,6 +279,7 @@ if selected_page == "ML Models":
         ## An example of an MMM model that optimizes Media Mix
         """
     )
+    
     colab_link = "https://colab.research.google.com/drive/130Giwi-zEbWWyx1teReM7QnPICrrFvWg?usp=sharing"
     st.markdown(f"""
 <iframe src="{colab_link}" width="100%" height="800" frameborder="0" allowfullscreen></iframe>
