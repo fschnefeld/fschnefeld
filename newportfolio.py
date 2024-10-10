@@ -270,7 +270,7 @@ print(classification_report(y_test, y_pred))'''
 
     st.code(code_1, language='python')
 
-if selected_page == "Mortgage Calculator":
+if selected_page == "API":
     st.header("Quick mortgage calculator writte in Python")
     
     def mortgage_calculator(principal, annual_rate, years, extra_payment=0):
@@ -750,7 +750,7 @@ if selected_page == "Articles":
     """)
     st.markdown(sheets_html, unsafe_allow_html=True)
 
-if selected_page == "API":
+if selected_page == "Mortgage Calculator":
     st.header("API")
     st.markdown("""
     ## Welcome to the API Page
