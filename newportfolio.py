@@ -113,7 +113,7 @@ st.set_page_config(
 
 # Sidebar buttons for navigation
 st.sidebar.header("Navigation")
-selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Analysis", "Data Pipelines", "Articles", "API"], index=0)
+selected_page = st.sidebar.radio("Go to", ["Home", "Dashboards", "Code", "ML Models", "Data Analysis", "Data Pipelines", "Articles", "API", "Mortgage Calculator"], index=0)
 
 # Main content based on sidebar selection
 if selected_page == "Home":
@@ -269,6 +269,83 @@ print("Classification Report:")
 print(classification_report(y_test, y_pred))'''
 
     st.code(code_1, language='python')
+
+if selected_page == "Mortgage Calculator":
+    st.header("Quick mortgage calculator writte in Python")
+    
+    def mortgage_calculator(principal, annual_rate, years, extra_payment=0):
+    # Convert annual interest into a monthly rate
+        monthly_rate = annual_rate / 100 / 12
+
+        # Next we calculate the total payments
+
+        total_payments = years * 12
+
+        # Next we find the monthly payments
+
+        monthly_payment = principal * (monthly_rate * (1 + monthly_rate) ** total_payments) / ((1 + monthly_rate) ** total_payments - 1)
+
+        balance = principal
+
+        total_interest = 0
+        amortization_schedule = []
+
+        for month in range (1, total_payments + 1):
+
+            interest_payment = balance * monthly_rate
+
+            principal_payment = monthly_payment - interest_payment + extra_payment
+
+            if principal_payment > balance:
+                principal_payment = balance
+            
+            balance -= principal_payment
+            total_interest += interest_payment
+
+
+            amortization_schedule.append({
+                'Month': month,
+                'Interest Payment': round(interest_payment, 2),
+                'Principal Payment': round(principal_payment, 2),
+                'Remaining Balance': round(balance, 2)
+            })
+        
+        total_paid = total_interest + principal
+        return {
+            'Monthly Payment': round(monthly_payment, 2),
+            'Total Interest Paid': round(total_interest, 2),
+            'Total Paid': round(total_paid, 2),
+            'Amortization Schedule': amortization_schedule
+        } 
+    
+    # Sidebar for user input
+    principal = st.sidebar.number_input("Loan Amount", min_value=0, value=2777000, step=10000)
+    annual_rate = st.sidebar.number_input("Annual Interest Rate (%)", min_value=0.0, value=5.0, step=0.1)
+    years = st.sidebar.slider("Loan Term (Years)", min_value=1, max_value=30, value=30)
+    extra_payment_enabled = st.sidebar.checkbox("Include Extra Payments")
+
+    # Conditional input for extra payments
+    if extra_payment_enabled:
+        extra_payment = st.sidebar.number_input("Extra Payment (DKK)", min_value=0, value=0)
+    else:
+        extra_payment = 0
+
+    # Calculate mortgage details
+    result = mortgage_calculator(principal, annual_rate, years, extra_payment)
+
+    # Display the results
+    st.write(f"Monthly Payment: {result['Monthly Payment']} DKK")
+    st.write(f"Total Interest Paid: {result['Total Interest Paid']} DKK")
+    st.write(f"Total Paid: {result['Total Paid']} DKK")
+
+    # Visualize the amortization schedule
+    schedule_df = pd.DataFrame(result['Amortization Schedule'])
+    st.line_chart(schedule_df['Remaining Balance'])  # Add your customizations here
+
+    # Option to download the amortization schedule as CSV
+    csv = schedule_df.to_csv(index=False)
+    st.download_button("Download Amortization Schedule", data=csv, file_name="amortization_schedule.csv")
+
 
 if selected_page == "ML Models":
     st.header("Machine Learning Models")
